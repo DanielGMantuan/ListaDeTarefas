@@ -47,6 +47,8 @@
         $dao->delete($id);
 
         backToHome();
+
+        exit;
     }
     else if($option == 5){ // Get by id
         $dao = new TarefaDao();
@@ -67,6 +69,13 @@
         
         exit;
     }
+    else if($option == 6){ // Change position
+        $dao = new TarefaDao();
+        $order = json_decode($_REQUEST['order'], true);
+
+        $dao->updateOrder($order);
+    }
+
 
     function backToHome(){
         header('Location: ../Views/index.php');

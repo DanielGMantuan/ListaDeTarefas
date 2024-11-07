@@ -1,3 +1,70 @@
+$(document).ready(function () {
+  function updateButtonVisibility() {
+    $("table tbody tr").each(function (index) {
+      var totalRows = $("table tbody tr").length;
+      var moveUpButton = $(this).find(".moveUp");
+      var moveDownButton = $(this).find(".moveDown");
+
+      // Esconder o botão "Move Up" se for a primeira linha
+      if (index === 0) {
+        moveUpButton.hide();
+      } else {
+        moveUpButton.show();
+      }
+
+      // Esconder o botão "Move Down" se for a última linha
+      if (index === totalRows - 1) {
+        moveDownButton.hide();
+      } else {
+        moveDownButton.show();
+      }
+    });
+  }
+
+  updateButtonVisibility();
+
+  // Mover para cima
+  $(".moveUp").click(function () {
+    var row = $(this).closest("tr");
+    var prevRow = row.prev();
+    if (prevRow.length) {
+      row.insertBefore(prevRow); // Mover a linha para cima
+      updateButtonVisibility();
+    }
+  });
+
+  // Mover para baixo
+  $(".moveDown").click(function () {
+    var row = $(this).closest("tr");
+    var nextRow = row.next();
+    if (nextRow.length) {
+      row.insertAfter(nextRow); // Mover a linha para baixo
+      updateButtonVisibility();
+    }
+  });
+
+  // Salvar a nova ordem
+  $("#saveOrder").click(function () {
+    var order = [];
+    $("tbody tr").each(function (index) {
+      var id = $(this).data("id");
+      order.push({ id: id, position: index + 1 });
+    });
+    // Enviar a nova ordem via AJAX
+    $.ajax({
+      url: "../Controllers/taskController.php?option=6",
+      type: "POST",
+      data: { order: JSON.stringify(order) },
+      success: function (response) {
+        alert("Ordem salva com sucesso!");
+      },
+      error: function () {
+        alert("Ocorreu um erro ao salvar a ordem.");
+      },
+    });
+  });
+});
+
 function openModal(id) {
   document.querySelector("#modal").style.display = "flex";
   console.log("requisitacao");
@@ -35,5 +102,3 @@ function closeModal() {
 function deleteTask(id) {
   fetch("../Controllers/taskController.php?option=4&id=" + id);
 }
-
-function changeOrder() {}

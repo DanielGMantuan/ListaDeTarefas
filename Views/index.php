@@ -21,8 +21,11 @@
     <title>Lista de tarefas</title>
     <link rel="stylesheet" href="./css/style.css">
     <script lang="javascript" src="./scripts/jquery-3.7.1.min.js"></script>
+    
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    
+    <script lang="javascript" src="./scripts/datePicker.js"></script>
     <script lang="javascript" src="./scripts/modal.js"></script>
 </head>
 <body>
@@ -35,6 +38,10 @@
             <button onclick="openModal()">
                 <img class="icon" src="../assets/plus.png" alt="">
                 <span>Nova tarefa</span>
+            </button>
+            <button id="saveOrder">
+                <img class="icon" src="../assets/plus.png" alt="">
+                <span>Save order</span>
             </button>
         </div>
         <?php 

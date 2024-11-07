@@ -1,19 +1,9 @@
-<tr class="<?= $tarefa->cost >= 1000 ? 'mark' : '' ?>">
+<tr class="<?= $tarefa->cost >= 1000 ? 'mark' : '' ?>" data-id="<?= $tarefa->id ?>">
     <form action="../Controllers/taskController.php?option=4" method="POST">
         <td class="order">
-            <?php 
-            if($index != 0){
-                echo ('<button type="button"><img class="icon" src="../assets/up-arrow.png" alt="Up"></button>');
-            }
-            ?>
-
+            <button type="button"><img class="icon moveUp" src="../assets/up-arrow.png" alt="Up"></button>
             <span><?= $tarefa->id ?></span>
-                
-            <?php 
-                if($index != count($tarefas) - 1){ 
-                    echo ('<button type="button"><img class="icon" src="../assets/down-arrow.png" alt="Up"></button>');
-                }
-            ?>
+            <button type="button"><img class="icon moveDown" src="../assets/down-arrow.png" alt="Up"></button>
         </td>
         <td>
             <p class="line-break">

@@ -12,7 +12,7 @@
         }
 
         public function getAll(){
-            $sql = $this->con->prepare("SELECT * FROM tarefas");
+            $sql = $this->con->prepare("SELECT * FROM tarefas ORDER BY presentation_order");
             $sql->execute();
 
             $list = array();
@@ -58,6 +58,16 @@
             $sql->bindValue(":dateLimit", $tarefa->dateLimit);
             $sql->bindValue(":id", $tarefa->id);
             $sql->execute();
+        }
+
+        public function updateOrder($orderList){
+            foreach($orderList as $order){
+                echo " ".$order['id']." ".$order['position'];
+                $sql = $this->con->prepare("UPDATE tarefas SET presentation_order = :order WHERE id = :id");
+                $sql->bindValue(":order", $order['position']);
+                $sql->bindValue(":id", $order['id']);
+                $sql->execute();
+            }
         }
 
         public function delete(int $id){
