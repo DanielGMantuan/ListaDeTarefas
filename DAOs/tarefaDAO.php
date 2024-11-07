@@ -60,12 +60,11 @@
             $sql->execute();
         }
 
-        public function updateOrder($orderList){
-            foreach($orderList as $order){
-                echo " ".$order['id']." ".$order['position'];
+        public function updateOrder($orderIds){
+            foreach($orderIds as $index => $id){
                 $sql = $this->con->prepare("UPDATE tarefas SET presentation_order = :order WHERE id = :id");
-                $sql->bindValue(":order", $order['position']);
-                $sql->bindValue(":id", $order['id']);
+                $sql->bindValue(":order", $id);
+                $sql->bindValue(":id", $index + 1);
                 $sql->execute();
             }
         }

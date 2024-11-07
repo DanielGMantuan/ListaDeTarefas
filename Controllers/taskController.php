@@ -73,9 +73,23 @@
         $dao = new TarefaDao();
         $order = json_decode($_REQUEST['order'], true);
 
-        $dao->updateOrder($order);
-    }
+        $orderIds = array_map(function($item) {
+            return $item['id']; 
+        }, $order);
 
+        $orderIds = array_unique($orderIds);
+        
+        $list = $dao->getAll();
+
+        $finalOrder = array();
+        foreach($list as $index => $dbTask){
+            if(!in_array($dbTask->id, $orderIds)){
+                array_splice($orderIds, $index, 0, $dbTask->id);
+            }
+        }
+
+        $dao->updateOrder($orderIds);
+    }
 
     function backToHome(){
         header('Location: ../Views/index.php');

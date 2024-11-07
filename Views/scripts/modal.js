@@ -48,7 +48,7 @@ $(document).ready(function () {
     var order = [];
     $("tbody tr").each(function (index) {
       var id = $(this).data("id");
-      order.push({ id: id, position: index + 1 });
+      order.push({ id: id });
     });
     // Enviar a nova ordem via AJAX
     $.ajax({
