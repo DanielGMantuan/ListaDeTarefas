@@ -5,7 +5,7 @@ class Tarefa {
     private string $name;
     private float $cost;
     private string $dateLimit;
-    private int $order;
+    private ?int $order;
 
     public function buildTarefa(int $id, string $name, float $cost, string $dateLimit, int $order = null)
     {
