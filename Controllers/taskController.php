@@ -23,7 +23,7 @@
 
         $tarefa = new Tarefa();
         $tarefa->name = $_REQUEST['name'];
-        $tarefa->cost = floatval(formatFromBR($_REQUEST['cost']));
+        $tarefa->cost = formatFromBR($_REQUEST['cost']);
         $tarefa->dateLimit = ConverterDataToMySQL($_REQUEST['dateLimit']);
         $tarefa->order = $order;
 
@@ -35,7 +35,9 @@
     else if($option == 3){ // Update
         
         $tarefa = new Tarefa();
-        $tarefa->buildTarefa($_REQUEST['id'], $_REQUEST['name'], floatval(formatFromBR($_REQUEST['cost'])), ConverterDataToMySQL($_REQUEST['dateLimit']) );
+        var_dump($_REQUEST['cost']);
+        var_dump(formatFromBR($_REQUEST['cost']));
+        $tarefa->buildTarefa($_REQUEST['id'], $_REQUEST['name'], formatFromBR($_REQUEST['cost']), ConverterDataToMySQL($_REQUEST['dateLimit']) );
         $dao = new TarefaDAO();
         $dao->update($tarefa);
 
@@ -58,7 +60,7 @@
             echo json_encode([
                 'id' => $task->id,
                 'name' => $task->name,
-                'cost' => $task->cost,
+                'cost' => formatToBR($task->cost),
                 'dateLimit' => formatarData($task->dateLimit)
             ]);
         } else {
