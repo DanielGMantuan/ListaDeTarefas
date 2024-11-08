@@ -4,7 +4,7 @@
     require_once (__DIR__  . "/utils/MoneyConversion.php");
 
     session_start();
-
+    var_dump($_SESSION['tarefas']);
     if(!isset($_SESSION['tarefas']) && !isset($_SESSION['error'])){
         header('Location: https://lista-de-tarefas-beta.vercel.app/api/Controllers/taskController.php?option=1');
 
