@@ -79,15 +79,16 @@
         $orderIds = array_unique($orderIds);
         
         $list = $dao->getAll();
-
-        $finalOrder = array();
+        
         foreach($list as $index => $dbTask){
             if(!in_array($dbTask->id, $orderIds)){
                 array_splice($orderIds, $index, 0, $dbTask->id);
             }
         }
-
+        
         $dao->updateOrder($orderIds);
+
+        exit;
     }
 
     function backToHome(){

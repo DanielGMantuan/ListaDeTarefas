@@ -5,14 +5,12 @@ $(document).ready(function () {
       var moveUpButton = $(this).find(".moveUp");
       var moveDownButton = $(this).find(".moveDown");
 
-      // Esconder o botão "Move Up" se for a primeira linha
       if (index === 0) {
         moveUpButton.hide();
       } else {
         moveUpButton.show();
       }
 
-      // Esconder o botão "Move Down" se for a última linha
       if (index === totalRows - 1) {
         moveDownButton.hide();
       } else {
@@ -34,37 +32,33 @@ $(document).ready(function () {
   });
 
   $("#modal form input[name=cost]").on("blur", function () {
-    formatCurrency($(this)); // Passa o campo de entrada jQuery para a função de formatação
+    formatCurrency($(this));
   });
 
-  // Mover para cima
   $(".moveUp").click(function () {
     var row = $(this).closest("tr");
     var prevRow = row.prev();
     if (prevRow.length) {
-      row.insertBefore(prevRow); // Mover a linha para cima
+      row.insertBefore(prevRow);
       updateButtonVisibility();
     }
   });
 
-  // Mover para baixo
   $(".moveDown").click(function () {
     var row = $(this).closest("tr");
     var nextRow = row.next();
     if (nextRow.length) {
-      row.insertAfter(nextRow); // Mover a linha para baixo
+      row.insertAfter(nextRow);
       updateButtonVisibility();
     }
   });
 
-  // Salvar a nova ordem
   $("#saveOrder").click(function () {
     var order = [];
     $("tbody tr").each(function (index) {
       var id = $(this).data("id");
       order.push({ id: id });
     });
-    // Enviar a nova ordem via AJAX
     $.ajax({
       url: "../Controllers/taskController.php?option=6",
       type: "POST",
@@ -76,6 +70,15 @@ $(document).ready(function () {
         alert("Ocorreu um erro ao salvar a ordem.");
       },
     });
+  });
+
+  $("main table tbody").sortable({
+    items: "tr",
+    placeholder: "ui-sortable-placeholder",
+    update: function (event, ui) {
+      updateButtonVisibility();
+      console.log("Tabela reorganizada!");
+    },
   });
 });
 
