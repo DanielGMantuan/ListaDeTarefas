@@ -20,14 +20,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de tarefas</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <script lang="javascript" src="./scripts/jquery-3.7.1.min.js"></script>
-    
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     
-    <script lang="javascript" src="./scripts/datePicker.js"></script>
-    <script lang="javascript" src="./scripts/modal.js"></script>
+    <script lang="javascript" src="../Views/scripts/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="../Views/css/style.css">
+    <script lang="javascript" src="../Views/scripts/datePicker.js"></script>
+    <script lang="javascript" src="../Views/scripts/modal.js"></script>
 </head>
 <body>
     <?php

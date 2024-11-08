@@ -107,7 +107,7 @@
      }
 
     function backToHome(){
-        header('Location: ../Views/index.php');
+        header('Location: ../api/index.php');
     }
 
     function validateEntries(){
