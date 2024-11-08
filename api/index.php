@@ -3,30 +3,30 @@
     require_once ( __DIR__  . "/utils/dateConvert.inc.php");
     require_once (__DIR__  . "/utils/MoneyConversion.php");
 
-    // ini_set('session.cookie_domain', '.vercel.app');  // Usando o domínio principal para todos os subdomínios
-    // session_set_cookie_params([
-    //     'lifetime' => 0,           // Cookie expira quando o navegador é fechado
-    //     'path' => '/',             // O cookie está disponível em todo o site
-    //     'domain' => '.vercel.app',  // Domínio compartilhado entre subdomínios
-    //     'secure' => true,           // Requer HTTPS para enviar o cookie
-    //     'httponly' => true,         // O cookie não é acessível via JavaScript
-    //     'samesite' => 'None'        // Permite cookies em requisições cross-origin
-    // ]);
-    // session_start();
+    ini_set('session.cookie_domain', '.vercel.app');  // Usando o domínio principal para todos os subdomínios
+    session_set_cookie_params([
+        'lifetime' => 0,           // Cookie expira quando o navegador é fechado
+        'path' => '/',             // O cookie está disponível em todo o site
+        'domain' => '.vercel.app',  // Domínio compartilhado entre subdomínios
+        'secure' => true,           // Requer HTTPS para enviar o cookie
+        'httponly' => true,         // O cookie não é acessível via JavaScript
+        'samesite' => 'None'        // Permite cookies em requisições cross-origin
+    ]);
+    session_start();
 
-    // if(!isset($_SESSION['tarefas']) && !isset($_SESSION['error'])){
-    //     header("Access-Control-Allow-Origin: https://lista-de-tarefas-beta.vercel.app");
-    //     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
-    //     header("Access-Control-Allow-Headers: Content-Type, Authorization");
-    //     header("Access-Control-Allow-Credentials: true");
-    //     header('Location: https://lista-de-tarefas-beta.vercel.app/api/Controllers/taskController.php?option=1');
+    if(!isset($_SESSION['tarefas']) && !isset($_SESSION['error'])){
+        header("Access-Control-Allow-Origin: https://lista-de-tarefas-beta.vercel.app");
+        header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+        header("Access-Control-Allow-Headers: Content-Type, Authorization");
+        header("Access-Control-Allow-Credentials: true");
+        header('Location: https://lista-de-tarefas-beta.vercel.app/api/Controllers/taskController.php?option=1');
 
-    //     exit;
-    // }
+        exit;
+    }
 
-    // $tarefas = $_SESSION['tarefas'];
+    $tarefas = $_SESSION['tarefas'];
 
-    // unset($_SESSION['tarefas']);
+    unset($_SESSION['tarefas']);
 ?>
 
 <!DOCTYPE html>
@@ -35,13 +35,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de tarefas</title>
+    <script src="/scripts/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="/css/style.css">
     <script src="/scripts/modal.js"></script>
     <script src="/scripts/datePicker.js"></script>
-    <script src="/scripts/jquery-3.7.1.min.js"></script>
-
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 </head>
 <body>
     <?php
