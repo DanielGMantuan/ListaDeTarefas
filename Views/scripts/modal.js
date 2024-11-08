@@ -77,7 +77,6 @@ $(document).ready(function () {
     placeholder: "ui-sortable-placeholder",
     update: function (event, ui) {
       updateButtonVisibility();
-      console.log("Tabela reorganizada!");
     },
   });
 });
@@ -123,7 +122,6 @@ function deleteTask(id) {
 
 function formatCurrency(input) {
   if (input.val()) {
-    console.log(input.val());
     let value = input.val().replace(/[^\d,]/g, "");
     value = value.replace(",", ".");
 
