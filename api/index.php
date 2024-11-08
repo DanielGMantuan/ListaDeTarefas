@@ -32,7 +32,7 @@
     // Limpa o cookie de tarefas (configura o cookie para expirar no passado)
 
     unset($_COOKIE['tarefas']);
-    setcookie('tarefas', '', -3600, '/');
+    setcookie('tarefas', '', -3600, '/', '.lista-de-tarefas-beta.vercel.app');
 
     // Limpa o cookie de erro, se existir
     if (isset($_COOKIE['error'])) {
