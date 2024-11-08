@@ -1,11 +1,11 @@
 <?php
-    require_once ( __DIR__  . "/Models/tarefa.php");
-    require_once ( __DIR__  . "/utils/dateConvert.inc.php");
-    require_once (__DIR__  . "/utils/MoneyConversion.php");
-
     ini_set('session.cookie_domain', '.vercel.app');
     ini_set('session.cookie_path', '/');
     session_start();  // Sempre após configurar os cookies
+    
+    require_once ( __DIR__  . "/utils/dateConvert.inc.php");
+    require_once (__DIR__  . "/utils/MoneyConversion.php");
+    require_once ( __DIR__  . "/Models/tarefa.php");
 
     if(!isset($_SESSION['tarefas']) && !isset($_SESSION['error'])){
         // header('Location: https://lista-de-tarefas-beta.vercel.app/api/Controllers/taskController.php?option=1');
