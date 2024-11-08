@@ -14,7 +14,7 @@
             <?= 'R$ ' . formatToBR($tarefa->cost) ?>
         </td>
         <td>
-            <?= formatarData( $tarefa->dateLimit ) ?>
+            <?= formatarData( strtotime($tarefa->dateLimit) ) ?>
         </td>
         <td>
             <div class="actions">
