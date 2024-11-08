@@ -62,7 +62,7 @@ $(document).ready(function () {
       order.push({ id: id });
     });
     $.ajax({
-      url: "../api/Controllers/taskController.php?option=6",
+      url: "../taskController.php?option=6",
       type: "POST",
       data: { order: JSON.stringify(order) },
       success: function (response) {
@@ -99,7 +99,7 @@ function openModal(id) {
     return;
   }
 
-  fetch("../api/Controllers/taskController.php?option=5&id=" + id)
+  fetch("../taskController.php?option=5&id=" + id)
     .then((response) => response.json())
     .then((data) => {
       $("#modal form input[name=name]").val(data.name);
@@ -124,7 +124,7 @@ function closeModal() {
 }
 
 function deleteTask(id) {
-  fetch("../api/Controllers/taskController.php?option=4&id=" + id);
+  fetch("../taskController.php?option=4&id=" + id);
 }
 
 function formatCurrency(input) {

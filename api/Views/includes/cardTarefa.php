@@ -1,5 +1,5 @@
 <tr class="<?= $tarefa->cost >= 1000 ? 'mark' : '' ?>" data-id="<?= $tarefa->id ?>">
-    <form action="../api/taskController.php?option=4" method="POST">
+    <form action="../taskController.php?option=4" method="POST">
         <td class="order">
             <button type="button"><img class="icon moveUp" src="/assets/up-arrow.png" alt="Up"></button>
             <span><?= $tarefa->id ?></span>

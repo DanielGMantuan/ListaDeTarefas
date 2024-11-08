@@ -1,5 +1,5 @@
 <div id="modal">
-    <form action="../api/taskController.php" method="POST">
+    <form action="../taskController.php" method="POST">
         <p class="title">New Task</p>
         <div class="column-container">
             <label for="name">Name</label>

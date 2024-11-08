@@ -53,7 +53,7 @@
             function alertDismissed() {
                 // Envia uma requisição para limpar a variável de sessão de erro
                 var xhr = new XMLHttpRequest();
-                xhr.open("GET", "/api/taskController.php?option=7", true); // URL para limpar o erro
+                xhr.open("GET", "/taskController.php?option=7", true); // URL para limpar o erro
                 xhr.send();
             }
         </script>
