@@ -6,7 +6,7 @@
     session_start();
 
     if(!isset($_SESSION['tarefas']) && !isset($_SESSION['error'])){
-        header('Location: ./Controllers/taskController.php?option=1');
+        header('Location: '. __DIR__ .'/Controllers/taskController.php?option=1');
     }
 
     $tarefas = $_SESSION['tarefas'];
