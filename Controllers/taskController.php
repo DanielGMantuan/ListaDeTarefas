@@ -3,8 +3,6 @@
     require_once "../DAOs/tarefaDAO.php";
     require_once "../utils/dateConvert.inc.php";
     require_once "../utils/MoneyConversion.php";
-
-    session_start();
     
     class TaskController{        
         public function getAll(){
