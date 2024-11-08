@@ -1,7 +1,7 @@
 <?php
-    require_once "./Models/tarefa.php";
-    require_once "./utils/dateConvert.inc.php";
-    require_once "./utils/MoneyConversion.php";
+    require_once ( __DIR__  . "/../Models/tarefa.php");
+    require_once ( __DIR__  . "/../utils/dateConvert.inc.php");
+    require_once (__DIR__  . "/../utils/MoneyConversion.php");
 
     session_start();
 
