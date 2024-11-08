@@ -9,11 +9,17 @@
     $option = $_REQUEST['option'];
 
     if($option == 1){ // List all
-        $dao = new TarefaDAO();
-        $list = $dao->getAll();
-        $_SESSION['tarefas'] = $list;
-
-        backToHome();
+        try{
+            $dao = new TarefaDAO();
+            $list = $dao->getAll();
+            $_SESSION['tarefas'] = $list;
+    
+            backToHome();
+        }
+        catch(Exception $e){
+            echo $e->getMessage();
+            $_SESSION['error'] = $e->getMessage();
+        }
     }
     else if($option == 2){ // Insert
         try{
