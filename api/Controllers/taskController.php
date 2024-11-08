@@ -4,6 +4,7 @@
     require_once "../utils/dateConvert.inc.php";
     require_once "../utils/MoneyConversion.php";
 
+    ini_set('session.cookie_domain', '.vercel.app');  // Certifique-se de que o domínio está correto
     session_start();
     
     $option = $_REQUEST['option'];
