@@ -36,10 +36,10 @@ class Conection
 
             return $this->con;
         } catch (PDOException $e) {
-            echo 'Falha na conexão: ' . $e->getMessage();
+            throw new Exception ('Falha na conexão: ' . $e->getMessage());
             exit; // Encerra a execução em caso de erro de conexão
         } catch (Exception $e) {
-            echo 'Erro: ' . $e->getMessage();
+            throw new Exception ('Erro: ' . $e->getMessage());
             exit; // Encerra a execução em caso de outros erros
         }
     }
