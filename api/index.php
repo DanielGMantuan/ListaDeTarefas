@@ -83,7 +83,7 @@
         </div>
         <?php 
             if(empty($tarefas)){
-                include_once('./Views/includes/emptyTable.php');
+                include_once( __DIR__  . '/Views/includes/emptyTable.php');
             }
             else{
         ?>
@@ -108,7 +108,7 @@
         <?php
             }
         ?>
-        <?php include_once('./Views/modals/taskModal.php'); ?>
+        <?php include_once(__DIR__  . './Views/modals/taskModal.php'); ?>
     </main>
     <footer></footer>
 </body>
