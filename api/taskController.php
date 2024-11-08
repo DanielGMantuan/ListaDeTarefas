@@ -32,7 +32,7 @@
             setCookieData('tarefas', json_encode($list), time() + 3600);  // Armazenando as tarefas no cookie por 1 hora
         }
         catch(Exception $e){
-            setCookieData('error', $e->getMessage(), time() + 3600);
+            setCookieData('getAll-error', $e->getMessage(), time() + 3600);
         }
         backToHome();
     }

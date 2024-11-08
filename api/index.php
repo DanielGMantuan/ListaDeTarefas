@@ -20,7 +20,7 @@
     }
 
     // Verifica se o cookie 'tarefas' ou 'error' existe
-    if (!getCookieData('tarefas') && !getCookieData('error')) {
+    if (!getCookieData('tarefas') && !getCookieData('getAll-error')) {
         // Redireciona para o controlador da tarefa com a opção 1 (listar todas as tarefas)
         header('Location: /api/taskController.php?option=1');
         exit;
@@ -36,6 +36,10 @@
     if (isset($_COOKIE['tarefas'])) {
         setcookie('tarefas', '', time() - 3600, '/', '.lista-de-tarefas-beta.vercel.app');
         unset($_COOKIE['tarefas']); // Remove do array $_COOKIE
+    }
+    if (isset($_COOKIE['getAll-error'])) {
+        setcookie('getAll-error', '', time() - 3600, '/', '.lista-de-tarefas-beta.vercel.app');
+        unset($_COOKIE['getAll-error']); // Remove do array $_COOKIE
     }
 ?>
 
