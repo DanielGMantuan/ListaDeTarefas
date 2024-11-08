@@ -6,7 +6,7 @@
     session_start();
 
     if(!isset($_SESSION['tarefas']) && !isset($_SESSION['error'])){
-        header('Location: /Controllers/taskController.php?option=1');
+        header('Location: ./Controllers/taskController.php?option=1');
     }
 
     $tarefas = $_SESSION['tarefas'];
@@ -20,13 +20,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de tarefas</title>
+    <link rel="stylesheet" href="./Views/css/style.css">
+    <script lang="javascript" src="./Views/scripts/jquery-3.7.1.min.js"></script>
+    <script lang="javascript" src="./Views/scripts/datePicker.js"></script>
+    <script lang="javascript" src="./Views/scripts/modal.js"></script>
+
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    
-    <script lang="javascript" src="../public/assets/scripts/jquery-3.7.1.min.js"></script>
-    <link rel="stylesheet" href="../public/assets/css/style.css">
-    <script lang="javascript" src="../public/assets/scripts/datePicker.js"></script>
-    <script lang="javascript" src="../public/assets/scripts/modal.js"></script>
 </head>
 <body>
     <?php
@@ -58,17 +58,17 @@
     <main>
         <div class="add">
             <button id="saveOrder">
-                <img class="icon" src="../assets/diskette.png" alt="">
+                <img class="icon" src="../public/assets/diskette.png" alt="">
                 <span>Save order</span>
             </button>
             <button onclick="openModal()">
-                <img class="icon" src="../assets/plus.png" alt="">
+                <img class="icon" src="../public/assets/plus.png" alt="">
                 <span>Nova tarefa</span>
             </button>
         </div>
         <?php 
             if(empty($tarefas)){
-                include_once('./includes/emptyTable.php');
+                include_once('./Views/includes/emptyTable.php');
             }
             else{
         ?>
@@ -85,7 +85,7 @@
             <tbody>
                 <?php
                     foreach($tarefas as $index => $tarefa){
-                        include('./includes/cardTarefa.php'); 
+                        include('./Views/includes/cardTarefa.php'); 
                     } 
                 ?>
             </tbody>
@@ -93,7 +93,7 @@
         <?php
             }
         ?>
-        <?php include_once('./modals/taskModal.php'); ?>
+        <?php include_once('./Views/modals/taskModal.php'); ?>
     </main>
     <footer></footer>
 </body>

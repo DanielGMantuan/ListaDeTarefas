@@ -13,13 +13,12 @@
             $dao = new TarefaDAO();
             $list = $dao->getAll();
             $_SESSION['tarefas'] = $list;
-    
-            backToHome();
         }
         catch(Exception $e){
-            echo $e->getMessage();
             $_SESSION['error'] = $e->getMessage();
         }
+
+        backToHome();
     }
     else if($option == 2){ // Insert
         try{
@@ -62,7 +61,7 @@
 
         $dao = new TarefaDAO();
         $dao->delete($id);
-
+        
         backToHome();
     }
     else if($option == 5){ // Get by id
@@ -113,7 +112,7 @@
      }
 
     function backToHome(){
-        header('Location: '. __DIR__ .' /../index.php');
+        header('Location: '. __DIR__ .'/..');
     }
 
     function validateEntries(){

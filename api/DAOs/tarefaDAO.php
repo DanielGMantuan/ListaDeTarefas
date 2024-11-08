@@ -1,6 +1,6 @@
 <?php
     require_once "../Models/tarefa.php";
-    require_once "./conection.inc.php";
+    require_once "conection.inc.php";
     require_once "../utils/dateConvert.inc.php";
 
     class TarefaDAO{
