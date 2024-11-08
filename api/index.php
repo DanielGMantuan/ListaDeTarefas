@@ -27,7 +27,7 @@
     }
 
     // Obtém as tarefas do cookie
-    $tarefas = Tarefa::fromArray(json_decode(getCookieData('tarefas'), true)); // json_decode(getCookieData('tarefas'), true);
+    $tarefas =  getCookieData('tarefas');
     var_dump($tarefas);
     // Limpa o cookie de tarefas (configura o cookie para expirar no passado)
     setCookieData('tarefas', '', time() - 3600);
