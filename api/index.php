@@ -8,7 +8,7 @@
     session_start();  // Sempre após configurar os cookies
 
     if(!isset($_SESSION['tarefas']) && !isset($_SESSION['error'])){
-        header('Location: https://lista-de-tarefas-beta.vercel.app/api/Controllers/taskController.php?option=1');
+        // header('Location: https://lista-de-tarefas-beta.vercel.app/api/Controllers/taskController.php?option=1');
 
         exit;
     }
