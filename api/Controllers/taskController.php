@@ -119,7 +119,7 @@
      }
 
     function backToHome(){
-        header('Location: https://lista-de-tarefas-beta.vercel.app/api/');
+        header('Location: ' . __DIR__  . '/../');
     }
 
     function validateEntries(){
