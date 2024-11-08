@@ -8,7 +8,7 @@
     require_once ( __DIR__  . "/Models/tarefa.php");
 
     if(!isset($_SESSION['tarefas']) && !isset($_SESSION['error'])){
-        // header('Location: https://lista-de-tarefas-beta.vercel.app/api/Controllers/taskController.php?option=1');
+        header('Location: ' . __DIR__  . '/Controllers/taskController.php');
 
         exit;
     }
