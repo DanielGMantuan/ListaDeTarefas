@@ -122,6 +122,7 @@
 
     function backToHome(){
         header('Location: /');
+        exit;
     }
 
     function validateEntries(){
