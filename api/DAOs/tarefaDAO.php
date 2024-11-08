@@ -74,5 +74,33 @@
             $sql->bindValue(":id", $id);
             $sql->execute();
         }
+
+        public function verifyNameInUse(string $name, int $id = null ){
+            // Cria a consulta SQL
+            $sql = "SELECT COUNT(*) FROM tarefas WHERE name = :name";
+                
+            // Se estamos atualizando, não verificamos o próprio nome
+            if ($id) {
+                $sql .= " AND id != :excludeId";
+            }
+
+            // Prepara a consulta
+            $stmt = $this->con->prepare($sql);
+
+            // Vincula os parâmetros
+            $stmt->bindValue(':name', $name);
+            if ($id) {
+                $stmt->bindValue(':excludeId', $id);
+            }
+
+            // Executa a consulta
+            $stmt->execute();
+
+            // Verifica se o nome já está em uso
+            $count = $stmt->fetchColumn();
+
+            // Retorna true se o nome já estiver em uso, caso contrário, false
+            return $count > 0;
+        }
     }
 ?>

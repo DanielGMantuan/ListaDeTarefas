@@ -49,6 +49,10 @@
             $tarefa->cost = formatFromBR($_REQUEST['cost']);
             $tarefa->dateLimit = ConverterDataToMySQL($_REQUEST['dateLimit']);
             $tarefa->order = $order;
+
+            if($dao->verifyNameInUse($tarefa->name)){
+                throw new Exception("Ja existe uma tarefa com esse nome.");
+            }
             
             $dao->insert($tarefa);
         }
@@ -64,6 +68,9 @@
             $tarefa = new Tarefa();
             $tarefa->buildTarefa($_REQUEST['id'], $_REQUEST['name'], formatFromBR($_REQUEST['cost']), ConverterDataToMySQL($_REQUEST['dateLimit']));
             $dao = new TarefaDAO();
+            if($dao->verifyNameInUse($tarefa->name, $tarefa->id)){
+                throw new Exception("Ja existe uma tarefa com esse nome.");
+            }
             $dao->update($tarefa);
         }
         catch(Exception $e){
