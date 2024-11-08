@@ -35,10 +35,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de tarefas</title>
-    <link rel="stylesheet" href="<?= __DIR__ ?>/Views/css/style.css">
-    <script lang="javascript" src="<?= __DIR__ ?>/Views/scripts/jquery-3.7.1.min.js"></script>
-    <script lang="javascript" src="<?= __DIR__ ?>/Views/scripts/datePicker.js"></script>
-    <script lang="javascript" src="<?= __DIR__ ?>/Views/scripts/modal.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/scripts/modal.js"></script>
+    <script src="/scripts/datePicker.js"></script>
+    <script src="/scripts/jquery-3.7.1.min.js"></script>
 
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
