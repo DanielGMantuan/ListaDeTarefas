@@ -4,6 +4,8 @@
     require_once __DIR__ . "/../utils/dateConvert.inc.php";
     require_once __DIR__ . "/../utils/MoneyConversion.php";
     
+    session_start();
+
     $option = $_REQUEST['option'];
 
     if($option == 1){ // List all
@@ -104,7 +106,6 @@
         exit;
     }
     else if($option == 7){  // Clear error
-        session_start();
         unset($_SESSION['error']);
         
         exit;
