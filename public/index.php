@@ -1,7 +1,7 @@
 <?php
-    require_once "../Classes/tarefa.php";
-    require_once "../utils/dateConvert.inc.php";
-    require_once "../utils/MoneyConversion.php";
+    require_once "../app/Classes/tarefa.php";
+    require_once "../app/utils/dateConvert.inc.php";
+    require_once "../app/utils/MoneyConversion.php";
 
     session_start();
 
@@ -23,10 +23,10 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     
-    <script lang="javascript" src="./scripts/jquery-3.7.1.min.js"></script>
-    <link rel="stylesheet" href="./css/style.css">
-    <script lang="javascript" src="./scripts/datePicker.js"></script>
-    <script lang="javascript" src="./scripts/modal.js"></script>
+    <script lang="javascript" src="./assets/scripts/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script lang="javascript" src="./assets/scripts/datePicker.js"></script>
+    <script lang="javascript" src="./assets/scripts/modal.js"></script>
 </head>
 <body>
     <?php
