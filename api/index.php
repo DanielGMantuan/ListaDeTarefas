@@ -3,18 +3,21 @@
     ini_set('session.cookie_path', '/');
     session_start();  // Sempre após configurar os cookies
     
-    require_once ( __DIR__  . "/utils/dateConvert.inc.php");
-    require_once (__DIR__  . "/utils/MoneyConversion.php");
-    require_once ( __DIR__  . "/Models/tarefa.php");
+    require_once __DIR__ . "/utils/dateConvert.inc.php";
+    require_once __DIR__ . "/utils/MoneyConversion.php";
+    require_once __DIR__ . "/Models/tarefa.php";
 
-    if(!isset($_SESSION['tarefas']) && !isset($_SESSION['error'])){
-        header('Location: ' . __DIR__  . '/Controllers/taskController.php?option=1');
-
+    // Verifica se a variável de sessão 'tarefas' ou 'error' está setada
+    if (!isset($_SESSION['tarefas']) && !isset($_SESSION['error'])) {
+        // Redireciona para o controlador da tarefa com a opção 1 (listar todas as tarefas)
+        header('Location: /api/taskController.php?option=1');
         exit;
     }
 
+    // Obtém as tarefas da sessão
     $tarefas = $_SESSION['tarefas'];
 
+    // Limpa a variável de sessão 'tarefas'
     unset($_SESSION['tarefas']);
 ?>
 
@@ -33,6 +36,7 @@
 </head>
 <body>
     <?php
+        // Exibe o erro da sessão caso exista
         if (isset($_SESSION['error'])){
     ?>
         <script>
@@ -47,7 +51,7 @@
             function alertDismissed() {
                 // Envia uma requisição para limpar a variável de sessão de erro
                 var xhr = new XMLHttpRequest();
-                xhr.open("GET", "<?= __DIR__ ?>/Controllers/taskController.php?option=7", true);
+                xhr.open("GET", "/api/taskController.php?option=7", true); // URL para limpar o erro
                 xhr.send();
             }
         </script>
@@ -70,10 +74,9 @@
             </button>
         </div>
         <?php 
-            if(empty($tarefas)){
-                include_once( __DIR__  . '/Views/includes/emptyTable.php');
-            }
-            else{
+            if (empty($tarefas)) {
+                include_once( __DIR__ . '/Views/includes/emptyTable.php');
+            } else {
         ?>
         <table>
             <thead>
@@ -87,16 +90,17 @@
             </thead>
             <tbody>
                 <?php
-                    foreach($tarefas as $index => $tarefa){
-                        include(__DIR__ .'/Views/includes/cardTarefa.php'); 
-                    } 
+                    // Loop através das tarefas e inclui o template do cartão de tarefa
+                    foreach ($tarefas as $index => $tarefa) {
+                        include(__DIR__ . '/Views/includes/cardTarefa.php');
+                    }
                 ?>
             </tbody>
         </table>
         <?php
             }
         ?>
-        <?php include_once(__DIR__  . '/Views/modals/taskModal.php'); ?>
+        <?php include_once(__DIR__ . '/Views/modals/taskModal.php'); ?>
     </main>
     <footer></footer>
 </body>

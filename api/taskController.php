@@ -3,10 +3,10 @@
     ini_set('session.cookie_path', '/');
     session_start();  // Sempre após configurar os cookies
     
-    require_once __DIR__ . "/../Models/tarefa.php";
-    require_once __DIR__ . "/../DAOs/tarefaDAO.php";
-    require_once __DIR__ . "/../utils/dateConvert.inc.php";
-    require_once __DIR__ . "/../utils/MoneyConversion.php";
+    require_once __DIR__ . "/Models/tarefa.php";
+    require_once __DIR__ . "/DAOs/tarefaDAO.php";
+    require_once __DIR__ . "/utils/dateConvert.inc.php";
+    require_once __DIR__ . "/utils/MoneyConversion.php";
 
 
     $option = $_REQUEST['option'];
