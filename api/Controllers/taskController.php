@@ -119,7 +119,7 @@
      }
 
     function backToHome(){
-        header('Location: ' . __DIR__  . '/../');
+        header('Location: ' . __DIR__  . '/../../../../../');
     }
 
     function validateEntries(){
