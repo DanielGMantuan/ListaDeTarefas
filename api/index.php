@@ -19,23 +19,29 @@
         return isset($_COOKIE[$name]) ? $_COOKIE[$name] : null;
     }
 
+    // Limpa os cookies 'tarefas' e 'error' no início
+    if (isset($_COOKIE['tarefas'])) {
+        setcookie('tarefas', '', time() - 3600, '/', '.lista-de-tarefas-beta.vercel.app');
+        unset($_COOKIE['tarefas']); // Remove do array $_COOKIE
+    }
+
+    if (isset($_COOKIE['error'])) {
+        setcookie('error', '', time() - 3600, '/');  // Exclui o cookie de erro
+        unset($_COOKIE['error']); // Remove do array $_COOKIE
+    }
+
     // Verifica se o cookie 'tarefas' ou 'error' existe
     if (!getCookieData('tarefas') && !getCookieData('error')) {
         // Redireciona para o controlador da tarefa com a opção 1 (listar todas as tarefas)
         header('Location: /api/taskController.php?option=1');
+        exit;
     }
 
-    // Obtém as tarefas do cookie
-    $tarefas = Tarefa::fromArray(json_decode(getCookieData('tarefas'), true));
-    var_dump($tarefas);
-    // Limpa o cookie de tarefas (configura o cookie para expirar no passado)
-
-    setcookie('tarefas', '', -3600, '/', '.lista-de-tarefas-beta.vercel.app');
-    unset($_COOKIE['tarefas']);
-
-    // Limpa o cookie de erro, se existir
-    if (isset($_COOKIE['error'])) {
-        setcookie('error', '', -3600, '/');  // Exclui o cookie de erro
+    // Caso 'tarefas' esteja setado no cookie, obter os dados
+    if (getCookieData('tarefas')) {
+        // Obtém as tarefas do cookie
+        $tarefas = Tarefa::fromArray(json_decode(getCookieData('tarefas'), true));
+        var_dump($tarefas);  // Exibe as tarefas para depuração
     }
 ?>
 
