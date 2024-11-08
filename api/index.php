@@ -3,10 +3,22 @@
     require_once ( __DIR__  . "/utils/dateConvert.inc.php");
     require_once (__DIR__  . "/utils/MoneyConversion.php");
 
-    ini_set('session.cookie_domain', '.vercel.app');  // Certifique-se de que o domínio está correto
+    ini_set('session.cookie_domain', '.vercel.app');  // Usando o domínio principal para todos os subdomínios
+    session_set_cookie_params([
+        'lifetime' => 0,           // Cookie expira quando o navegador é fechado
+        'path' => '/',             // O cookie está disponível em todo o site
+        'domain' => '.vercel.app',  // Domínio compartilhado entre subdomínios
+        'secure' => true,           // Requer HTTPS para enviar o cookie
+        'httponly' => true,         // O cookie não é acessível via JavaScript
+        'samesite' => 'None'        // Permite cookies em requisições cross-origin
+    ]);
     session_start();
 
     if(!isset($_SESSION['tarefas']) && !isset($_SESSION['error'])){
+        header("Access-Control-Allow-Origin: *");  // Ou substitua "*" por um domínio específico, como "https://lista-de-tarefas.vercel.app"
+        header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+        header("Access-Control-Allow-Headers: Content-Type, Authorization");
+        header("Access-Control-Allow-Credentials: true");
         header('Location: '. __DIR__ .'/Controllers/taskController.php?option=1');
         exit;
     }
