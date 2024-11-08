@@ -30,12 +30,13 @@
     $tarefas = Tarefa::fromArray(json_decode(getCookieData('tarefas'), true));
     var_dump($tarefas);
     // Limpa o cookie de tarefas (configura o cookie para expirar no passado)
-    setcookie('tarefas', '', 3600);
+
     unset($_COOKIE['tarefas']);
+    setcookie('tarefas', '', -3600, '/');
 
     // Limpa o cookie de erro, se existir
     if (isset($_COOKIE['error'])) {
-        setcookie('error', '', 3600);  // Exclui o cookie de erro
+        setcookie('error', '', -3600, '/');  // Exclui o cookie de erro
     }
 ?>
 
