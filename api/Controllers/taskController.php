@@ -4,7 +4,9 @@
     require_once __DIR__ . "/../utils/dateConvert.inc.php";
     require_once __DIR__ . "/../utils/MoneyConversion.php";
     
-    session_start();
+    ini_set('session.cookie_domain', '.vercel.app');  // Compartilha o cookie entre subdomínios
+    session_start();  // Sempre após configurar os cookies
+
 
     $option = $_REQUEST['option'];
 
