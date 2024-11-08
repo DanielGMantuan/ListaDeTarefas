@@ -1,4 +1,8 @@
 <?php
+    require_once __DIR__ . "/utils/dateConvert.inc.php";
+    require_once __DIR__ . "/utils/MoneyConversion.php";
+    require_once __DIR__ . "/Models/tarefa.php";
+
     // Configurações de cookie
     ini_set('session.cookie_domain', '.lista-de-tarefas-beta.vercel.app');  // Permite que o cookie seja válido para todos os subdomínios
     ini_set('session.cookie_path', '/');  // O caminho do cookie, '/' indica que o cookie é válido para todo o site

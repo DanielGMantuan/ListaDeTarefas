@@ -5,6 +5,11 @@
     ini_set('session.cookie_secure', '1');  // Garante que o cookie só será enviado via HTTPS
     ini_set('session.cookie_samesite', 'None'); // Garante que o cookie seja enviado em contextos cross-site
 
+    require_once __DIR__ . "/Models/tarefa.php";
+    require_once __DIR__ . "/DAOs/tarefaDAO.php";
+    require_once __DIR__ . "/utils/dateConvert.inc.php";
+    require_once __DIR__ . "/utils/MoneyConversion.php";
+
     // Inicializar a sessão (mantido aqui caso precise para outras variáveis ou segurança)
     session_start();
 
