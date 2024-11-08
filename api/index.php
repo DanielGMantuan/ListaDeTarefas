@@ -23,7 +23,6 @@
     if (!getCookieData('tarefas') && !getCookieData('error')) {
         // Redireciona para o controlador da tarefa com a opção 1 (listar todas as tarefas)
         header('Location: /api/taskController.php?option=1');
-        exit;
     }
 
     // Obtém as tarefas do cookie
