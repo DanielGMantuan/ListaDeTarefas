@@ -1,5 +1,5 @@
 <?php
-    ini_set('session.cookie_domain', '.vercel.app');  // Permite que o cookie seja válido para todos os subdomínios
+    ini_set('session.cookie_domain', '.lista-de-tarefas-beta.vercel.app');  // Permite que o cookie seja válido para todos os subdomínios
     ini_set('session.cookie_path', '/');  // O caminho do cookie, '/' indica que o cookie é válido para todo o site
     ini_set('session.cookie_secure', '1');  // Garante que o cookie só será enviado via HTTPS
     ini_set('session.cookie_samesite', 'None');
