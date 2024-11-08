@@ -18,8 +18,7 @@
             $_SESSION['error'] = $e->getMessage();
         }
 
-        echo 'tarefas ' .$_SESSION['tarefas'];
-        echo isset($_SESSION['tarefas']);
+        var_dump(isset($_SESSION['tarefas']));
     }
     else if($option == 2){ // Insert
         try{
