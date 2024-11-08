@@ -1,6 +1,6 @@
 <?php
 // Incluir o Controller da Tarefa
-require_once '../../controllers/TarefaController.php';
+require_once '../Controllers/taskController.php';
 
 // Verificar o tipo de requisição
 $option = isset($_REQUEST['option']) ? $_REQUEST['option'] : null;
