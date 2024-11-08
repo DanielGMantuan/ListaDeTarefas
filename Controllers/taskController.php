@@ -39,7 +39,7 @@
         $dao = new TarefaDAO();
         $dao->update($tarefa);
 
-        exit;
+        backToHome();
     }
     else if($option == 4){ // Delete
         $id = $_REQUEST['id'];
