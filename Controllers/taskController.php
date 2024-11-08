@@ -2,6 +2,7 @@
     require_once "../Classes/tarefa.php";
     require_once "../DAOs/tarefaDAO.php";
     require_once "../utils/dateConvert.inc.php";
+    require_once "../utils/MoneyConversion.php";
 
     session_start();
     
@@ -22,7 +23,7 @@
 
         $tarefa = new Tarefa();
         $tarefa->name = $_REQUEST['name'];
-        $tarefa->cost = $_REQUEST['cost'];
+        $tarefa->cost = floatval(formatFromBR($_REQUEST['cost']));
         $tarefa->dateLimit = ConverterDataToMySQL($_REQUEST['dateLimit']);
         $tarefa->order = $order;
 
@@ -34,11 +35,11 @@
     else if($option == 3){ // Update
         
         $tarefa = new Tarefa();
-        $tarefa->buildTarefa($_REQUEST['id'], $_REQUEST['name'], $_REQUEST['cost'], ConverterDataToMySQL($_REQUEST['dateLimit']) );
+        $tarefa->buildTarefa($_REQUEST['id'], $_REQUEST['name'], floatval(formatFromBR($_REQUEST['cost'])), ConverterDataToMySQL($_REQUEST['dateLimit']) );
         $dao = new TarefaDAO();
         $dao->update($tarefa);
 
-        backToHome();
+        exit;
     }
     else if($option == 4){ // Delete
         $id = $_REQUEST['id'];
@@ -47,8 +48,6 @@
         $dao->delete($id);
 
         backToHome();
-
-        exit;
     }
     else if($option == 5){ // Get by id
         $dao = new TarefaDao();

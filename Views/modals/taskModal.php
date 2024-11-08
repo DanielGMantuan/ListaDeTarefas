@@ -7,7 +7,7 @@
         </div>
         <div class="column-container">
             <label for="cost">Cost</label>
-            <input type="text"  name="cost" class="form-input" placeholder="Task cost">
+            <input type="text" name="cost" class="form-input" placeholder="Task cost">
         </div>
         <div class="column-container">
             <label for="dateLimit" for="datepicker">Date Limit</label>

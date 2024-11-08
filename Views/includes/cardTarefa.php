@@ -11,7 +11,7 @@
             </p>
         </td> 
         <td>
-            <?= 'R$ ' . $tarefa->cost; ?>
+            <?= 'R$ ' . formatToBR($tarefa->cost) ?>
         </td>
         <td>
             <?= formatarData( $tarefa->dateLimit ) ?>

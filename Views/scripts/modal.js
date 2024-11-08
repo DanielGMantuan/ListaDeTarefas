@@ -23,6 +23,20 @@ $(document).ready(function () {
 
   updateButtonVisibility();
 
+  $("#modal form input[name=cost]").on("input", function () {
+    let currentValue = this.value;
+
+    let cursorPosition = this.selectionStart;
+
+    this.value = currentValue.replace(/[^0-9,]/g, "");
+
+    this.setSelectionRange(cursorPosition, cursorPosition);
+  });
+
+  $("#modal form input[name=cost]").on("blur", function () {
+    formatCurrency($(this)); // Passa o campo de entrada jQuery para a função de formatação
+  });
+
   // Mover para cima
   $(".moveUp").click(function () {
     var row = $(this).closest("tr");
@@ -66,39 +80,55 @@ $(document).ready(function () {
 });
 
 function openModal(id) {
-  document.querySelector("#modal").style.display = "flex";
-  console.log("requisitacao");
+  $("#modal").css("display", "flex");
+  $("html, body").addClass("modal-open");
+
   if (id == undefined || id == null) {
-    document.querySelector("#modal form > p").textContent = "Add Task";
-    document.querySelector(".buttons > button[type=submit]").textContent =
-      "Submit";
-    document.querySelector(".buttons > input[name=option]").value = "2";
+    $("#modal form > p").text("Add Task");
+    $(".buttons > button[type=submit]").text("Submit");
+    $(".buttons > input[name=option]").val("2");
     return;
   }
 
-  console.log("requisitacao");
   fetch("../Controllers/taskController.php?option=5&id=" + id)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
-      document.querySelector("#modal form input[name=name]").value = data.name;
-      document.querySelector("#modal form input[name=cost]").value = data.cost;
-      document.querySelector(".buttons > input[name=id]").value = data.id;
-      document.querySelector("#modal form input[name=dateLimit]").value =
-        data.dateLimit;
+      $("#modal form input[name=name]").val(data.name);
+      $("#modal form input[name=cost]").val(data.cost);
+      $(".buttons > input[name=id]").val(data.id);
+      $("#modal form input[name=dateLimit]").val(data.dateLimit);
+
+      formatCurrency($("#modal form input[name=cost]"));
     });
-  document.querySelector("#modal form > p").textContent = "Edit Task";
-  document.querySelector(".buttons > button[type=submit]").textContent = "Save";
-  document.querySelector(".buttons > input[name=option]").value = "3";
+
+  $("#modal form > p").text("Edit Task");
+  $(".buttons > button[type=submit]").text("Save");
+  $(".buttons > input[name=option]").val("3");
 }
 
 function closeModal() {
-  document.querySelector("#modal").style.display = "none";
-  document.querySelector("#modal form input[name=name]").value = "";
-  document.querySelector("#modal form input[name=cost]").value = "";
-  document.querySelector("#modal form input[name=dateLimit]").value = "";
+  $("#modal").css("display", "none");
+  $("html, body").removeClass("modal-open");
+  $("#modal form input[name=name]").val("");
+  $("#modal form input[name=cost]").val("");
+  $("#modal form input[name=dateLimit]").val("");
 }
 
 function deleteTask(id) {
   fetch("../Controllers/taskController.php?option=4&id=" + id);
+}
+
+function formatCurrency(input) {
+  if (input.val()) {
+    console.log(input.val());
+    let value = input.val().replace(/[^\d,]/g, "");
+    value = value.replace(",", ".");
+
+    let formattedValue = parseFloat(value).toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    });
+
+    input.val(formattedValue);
+  }
 }

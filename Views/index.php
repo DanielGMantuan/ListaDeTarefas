@@ -1,6 +1,7 @@
 <?php
     require_once "../Classes/tarefa.php";
     require_once "../utils/dateConvert.inc.php";
+    require_once "../utils/MoneyConversion.php";
 
     session_start();
 
