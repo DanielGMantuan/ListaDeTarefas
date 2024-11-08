@@ -15,11 +15,12 @@
     session_start();
 
     if(!isset($_SESSION['tarefas']) && !isset($_SESSION['error'])){
-        header("Access-Control-Allow-Origin: *");  // Ou substitua "*" por um domínio específico, como "https://lista-de-tarefas.vercel.app"
+        header("Access-Control-Allow-Origin: https://lista-de-tarefas-beta.vercel.app");
         header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
         header("Access-Control-Allow-Headers: Content-Type, Authorization");
         header("Access-Control-Allow-Credentials: true");
-        header('Location: '. __DIR__ .'/Controllers/taskController.php?option=1');
+        header('Location: https://lista-de-tarefas-beta.vercel.app/api/Controllers/taskController.php?option=1');
+
         exit;
     }
 
