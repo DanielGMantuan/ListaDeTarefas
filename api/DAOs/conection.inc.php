@@ -1,5 +1,4 @@
 <?php
-
 class Conection
 {
     private $servidor_mysql;
@@ -44,7 +43,4 @@ class Conection
         }
     }
 }
-
-
 ?>
-
