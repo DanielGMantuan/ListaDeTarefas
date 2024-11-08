@@ -42,6 +42,7 @@ $(document).ready(function () {
       row.insertBefore(prevRow);
       updateButtonVisibility();
     }
+    showSaveOrder();
   });
 
   $(".moveDown").click(function () {
@@ -51,6 +52,7 @@ $(document).ready(function () {
       row.insertAfter(nextRow);
       updateButtonVisibility();
     }
+    showSaveOrder();
   });
 
   $("#saveOrder").click(function () {
@@ -77,9 +79,14 @@ $(document).ready(function () {
     placeholder: "ui-sortable-placeholder",
     update: function (event, ui) {
       updateButtonVisibility();
+      showSaveOrder();
     },
   });
 });
+
+function showSaveOrder() {
+  $("#saveOrder").css("display", "flex");
+}
 
 function openModal(id) {
   $("#modal").css("display", "flex");

@@ -58,13 +58,13 @@
 
     <main>
         <div class="add">
+            <button id="saveOrder">
+                <img class="icon" src="../assets/diskette.png" alt="">
+                <span>Save order</span>
+            </button>
             <button onclick="openModal()">
                 <img class="icon" src="../assets/plus.png" alt="">
                 <span>Nova tarefa</span>
-            </button>
-            <button id="saveOrder">
-                <img class="icon" src="../assets/plus.png" alt="">
-                <span>Save order</span>
             </button>
         </div>
         <?php 
