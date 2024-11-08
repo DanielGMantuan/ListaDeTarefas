@@ -18,10 +18,10 @@
             $list = array();
 
             while($row = $sql->fetch(PDO::FETCH_OBJ)){
-                // $tarefa = new Tarefa();
-                // $tarefa->buildTarefa($row->id, $row->name, $row->cost, strtotime($row->date_limit), $row->presentation_order);
+                $tarefa = new Tarefa();
+                $tarefa->buildTarefa($row->id, $row->name, $row->cost, strtotime($row->date_limit), $row->presentation_order);
 
-                $list[] = $row;
+                $list[] = $tarefa;
             }
 
             return $list;
