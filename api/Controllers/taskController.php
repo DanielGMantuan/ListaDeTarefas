@@ -15,9 +15,11 @@
             $dao = new TarefaDAO();
             $list = $dao->getAll();
             $_SESSION['tarefas'] = $list;
+            session_write_close();
         }
         catch(Exception $e){
             $_SESSION['error'] = $e->getMessage();
+            session_write_close();
         }
         backToHome();
     }
@@ -39,6 +41,7 @@
         }
         catch(Exception $e){
             $_SESSION['error'] = $e->getMessage();
+            session_write_close();
         }
 
         backToHome();
@@ -53,6 +56,7 @@
         }
         catch(Exception $e){
             $_SESSION['error'] = $e->getMessage();
+            session_write_close();
         }
 
         backToHome();
@@ -108,6 +112,7 @@
     }
     else if($option == 7){  // Clear error
         unset($_SESSION['error']);
+        session_write_close();
         
         exit;
      }
