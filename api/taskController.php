@@ -129,7 +129,11 @@
         exit;
     }
     else if($option == 7){  // Clear error
-        setCookieData('error', '', time() - 3600);  // Excluir o cookie de erro
+        if (isset($_COOKIE['error'])) {
+            setcookie('error', '', time() - 3600, '/', '.lista-de-tarefas-beta.vercel.app');
+            unset($_COOKIE['error']); // Remove do array $_COOKIE
+        }
+        backToHome();
         exit;
      }
 
