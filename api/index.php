@@ -28,7 +28,7 @@
 
     // Obtém as tarefas do cookie
     $tarefas = json_decode(getCookieData('tarefas'), true);
-
+    var_dump($tarefas);
     // Limpa o cookie de tarefas (configura o cookie para expirar no passado)
     setCookieData('tarefas', '', time() - 3600);
 
