@@ -25,6 +25,23 @@ class Tarefa {
     {
         $this->$name = $value;
     }
+
+    public static function fromArray(array $data): array
+    {
+        $tarefas = [];
+        foreach ($data as $item) {
+            $tarefa = new self();
+            $tarefa->buildTarefa(
+                $item['id'],
+                $item['name'],
+                (float) $item['cost'], // Converte custo para float
+                $item['date_limit'],
+                isset($item['presentation_order']) ? (int) $item['presentation_order'] : null
+            );
+            $tarefas[] = $tarefa;
+        }
+        return $tarefas;
+    }
 }
 
 ?>
