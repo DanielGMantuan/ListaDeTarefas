@@ -100,7 +100,7 @@
             <tbody>
                 <?php
                     foreach($tarefas as $index => $tarefa){
-                        include('./Views/includes/cardTarefa.php'); 
+                        include(__DIR__ .'/Views/includes/cardTarefa.php'); 
                     } 
                 ?>
             </tbody>
@@ -108,7 +108,7 @@
         <?php
             }
         ?>
-        <?php include_once(__DIR__  . './Views/modals/taskModal.php'); ?>
+        <?php include_once(__DIR__  . '/Views/modals/taskModal.php'); ?>
     </main>
     <footer></footer>
 </body>
