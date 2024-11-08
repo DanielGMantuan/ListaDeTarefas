@@ -16,30 +16,38 @@
         backToHome();
     }
     else if($option == 2){ // Insert
-        $dao = new TarefaDAO();
-        $list = $dao->getAll();
+        try{
+            validateEntries();
+            $dao = new TarefaDAO();
+            $list = $dao->getAll();
+    
+            $order = count($list) + 1;
 
-        $order = count($list) + 1;
-
-        $tarefa = new Tarefa();
-        $tarefa->name = $_REQUEST['name'];
-        $tarefa->cost = formatFromBR($_REQUEST['cost']);
-        $tarefa->dateLimit = ConverterDataToMySQL($_REQUEST['dateLimit']);
-        $tarefa->order = $order;
-
-        var_dump($tarefa);
-        $dao->insert($tarefa);
+            $tarefa = new Tarefa();
+            $tarefa->name = $_REQUEST['name'];
+            $tarefa->cost = formatFromBR($_REQUEST['cost']);
+            $tarefa->dateLimit = ConverterDataToMySQL($_REQUEST['dateLimit']);
+            $tarefa->order = $order;
+            
+            $dao->insert($tarefa);
+        }
+        catch(Exception $e){
+            $_SESSION['error'] = $e->getMessage();
+        }
 
         backToHome();
     }
     else if($option == 3){ // Update
-        
-        $tarefa = new Tarefa();
-        var_dump($_REQUEST['cost']);
-        var_dump(formatFromBR($_REQUEST['cost']));
-        $tarefa->buildTarefa($_REQUEST['id'], $_REQUEST['name'], formatFromBR($_REQUEST['cost']), ConverterDataToMySQL($_REQUEST['dateLimit']) );
-        $dao = new TarefaDAO();
-        $dao->update($tarefa);
+        try{
+            validateEntries();
+            $tarefa = new Tarefa();
+            $tarefa->buildTarefa($_REQUEST['id'], $_REQUEST['name'], formatFromBR($_REQUEST['cost']), ConverterDataToMySQL($_REQUEST['dateLimit']) );
+            $dao = new TarefaDAO();
+            $dao->update($tarefa);
+        }
+        catch(Exception $e){
+            $_SESSION['error'] = $e->getMessage();
+        }
 
         backToHome();
     }
@@ -92,8 +100,37 @@
 
         exit;
     }
+    else if($option == 7){  // Clear error
+        unset($_SESSION['error']);
+        
+        exit;
+     }
 
     function backToHome(){
         header('Location: ../Views/index.php');
+    }
+
+    function validateEntries(){
+        $exceptions = array();
+
+        if(!isset($_REQUEST['name']) && !isset($_REQUEST['cost']) && !isset($_REQUEST['dateLimit'])){
+            throw new Exception("Error na requisicao favor concactar os admininistradores.");
+        }
+
+        if(empty($_REQUEST['name'])){
+            $exceptions[] = "O campo nome nao pode ser vazio.";
+        }
+
+        if(empty($_REQUEST['cost'])){
+            $exceptions[] = "O campo custo nao pode ser vazio.";
+        }
+
+        if(empty($_REQUEST['dateLimit'])){
+            $exceptions[] = "O campo data limite nao pode ser vazio.";
+        }
+
+        if(count($exceptions) > 0){
+            throw new Exception(implode("", $exceptions));
+        }
     }
 ?>

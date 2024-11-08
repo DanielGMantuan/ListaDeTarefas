@@ -30,6 +30,28 @@
     <script lang="javascript" src="./scripts/modal.js"></script>
 </head>
 <body>
+    <?php
+        if (isset($_SESSION['error'])){
+    ?>
+        <script>
+            // Exibe o alerta com a mensagem de erro
+            alert("<?php echo addslashes(htmlspecialchars($_SESSION['error'])); ?>");
+
+            // Após o alerta ser fechado, faz uma requisição AJAX para remover o erro da sessão
+            window.onload = function() {
+                alertDismissed();
+            };
+
+            function alertDismissed() {
+                // Envia uma requisição para limpar a variável de sessão de erro
+                var xhr = new XMLHttpRequest();
+                xhr.open("GET", "../Controllers/taskController.php?option=7", true);
+                xhr.send();
+            }
+        </script>
+    <?php
+        }
+    ?>
     <header>
         <h1>Sistemas de Tarefas</h1>
     </header>
