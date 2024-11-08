@@ -1,12 +1,12 @@
 <?php
-    require_once "../app/Classes/tarefa.php";
+    require_once "../app/Models/tarefa.php";
     require_once "../app/utils/dateConvert.inc.php";
     require_once "../app/utils/MoneyConversion.php";
 
     session_start();
 
     if(!isset($_SESSION['tarefas'])){
-        header('Location: ../Controllers/taskController.php?option=1');
+        header('Location: ../app/Controllers/taskController.php?option=1');
     }
 
     $tarefas = $_SESSION['tarefas'];
