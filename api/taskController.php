@@ -1,15 +1,22 @@
 <?php
+    // Configuração do cookie
     ini_set('session.cookie_domain', '.lista-de-tarefas-beta.vercel.app');  // Permite que o cookie seja válido para todos os subdomínios
     ini_set('session.cookie_path', '/');  // O caminho do cookie, '/' indica que o cookie é válido para todo o site
     ini_set('session.cookie_secure', '1');  // Garante que o cookie só será enviado via HTTPS
-    ini_set('session.cookie_samesite', 'None');
-    session_start();  // Sempre após configurar os cookies
-    
-    require_once __DIR__ . "/Models/tarefa.php";
-    require_once __DIR__ . "/DAOs/tarefaDAO.php";
-    require_once __DIR__ . "/utils/dateConvert.inc.php";
-    require_once __DIR__ . "/utils/MoneyConversion.php";
+    ini_set('session.cookie_samesite', 'None'); // Garante que o cookie seja enviado em contextos cross-site
 
+    // Inicializar a sessão (mantido aqui caso precise para outras variáveis ou segurança)
+    session_start();
+
+    // Função para configurar cookies com o nome e valor
+    function setCookieData($name, $value, $expire = 0) {
+        setcookie($name, $value, $expire, '/', '.lista-de-tarefas-beta.vercel.app', true, true);
+    }
+
+    // Função para pegar os dados de cookies
+    function getCookieData($name) {
+        return isset($_COOKIE[$name]) ? $_COOKIE[$name] : null;
+    }
 
     $option = $_REQUEST['option'];
 
@@ -17,12 +24,10 @@
         try{
             $dao = new TarefaDAO();
             $list = $dao->getAll();
-            $_SESSION['tarefas'] = $list;
-            session_write_close();
+            setCookieData('tarefas', json_encode($list), time() + 3600);  // Armazenando as tarefas no cookie por 1 hora
         }
         catch(Exception $e){
-            $_SESSION['error'] = $e->getMessage();
-            session_write_close();
+            setCookieData('error', $e->getMessage(), time() + 3600);
         }
         backToHome();
     }
@@ -43,8 +48,7 @@
             $dao->insert($tarefa);
         }
         catch(Exception $e){
-            $_SESSION['error'] = $e->getMessage();
-            session_write_close();
+            setCookieData('error', $e->getMessage(), time() + 3600);
         }
 
         backToHome();
@@ -53,13 +57,12 @@
         try{
             validateEntries();
             $tarefa = new Tarefa();
-            $tarefa->buildTarefa($_REQUEST['id'], $_REQUEST['name'], formatFromBR($_REQUEST['cost']), ConverterDataToMySQL($_REQUEST['dateLimit']) );
+            $tarefa->buildTarefa($_REQUEST['id'], $_REQUEST['name'], formatFromBR($_REQUEST['cost']), ConverterDataToMySQL($_REQUEST['dateLimit']));
             $dao = new TarefaDAO();
             $dao->update($tarefa);
         }
         catch(Exception $e){
-            $_SESSION['error'] = $e->getMessage();
-            session_write_close();
+            setCookieData('error', $e->getMessage(), time() + 3600);
         }
 
         backToHome();
@@ -114,9 +117,7 @@
         exit;
     }
     else if($option == 7){  // Clear error
-        unset($_SESSION['error']);
-        session_write_close();
-        
+        setCookieData('error', '', time() - 3600);  // Excluir o cookie de erro
         exit;
      }
 
