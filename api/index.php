@@ -9,18 +9,18 @@
     require_once __DIR__ . "/utils/MoneyConversion.php";
     require_once __DIR__ . "/Models/tarefa.php";
 
-    // // Verifica se a variável de sessão 'tarefas' ou 'error' está setada
-    // if (!isset($_SESSION['tarefas']) && !isset($_SESSION['error'])) {
-    //     // Redireciona para o controlador da tarefa com a opção 1 (listar todas as tarefas)
-    //     header('Location: /api/taskController.php?option=1');
-    //     exit;
-    // }
+    // Verifica se a variável de sessão 'tarefas' ou 'error' está setada
+    if (!isset($_SESSION['tarefas']) && !isset($_SESSION['error'])) {
+        // Redireciona para o controlador da tarefa com a opção 1 (listar todas as tarefas)
+        header('Location: /api/taskController.php?option=1');
+        exit;
+    }
 
-    // // Obtém as tarefas da sessão
-    // $tarefas = $_SESSION['tarefas'];
+    // Obtém as tarefas da sessão
+    $tarefas = $_SESSION['tarefas'];
 
-    // // Limpa a variável de sessão 'tarefas'
-    // unset($_SESSION['tarefas']);
+    // Limpa a variável de sessão 'tarefas'
+    unset($_SESSION['tarefas']);
 ?>
 
 <!DOCTYPE html>
