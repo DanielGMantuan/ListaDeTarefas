@@ -18,7 +18,6 @@
             $_SESSION['error'] = $e->getMessage();
         }
 
-        backToHome();
     }
     else if($option == 2){ // Insert
         try{
