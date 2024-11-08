@@ -13,12 +13,10 @@
             $dao = new TarefaDAO();
             $list = $dao->getAll();
             $_SESSION['tarefas'] = $list;
-            echo(var_dump($_SESSION['tarefas']));
         }
         catch(Exception $e){
             $_SESSION['error'] = $e->getMessage();
         }
-
         backToHome();
     }
     else if($option == 2){ // Insert
