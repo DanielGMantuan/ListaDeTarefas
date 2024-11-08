@@ -4,7 +4,8 @@
     require_once __DIR__ . "/../utils/dateConvert.inc.php";
     require_once __DIR__ . "/../utils/MoneyConversion.php";
     
-    ini_set('session.cookie_path', '/'); 
+    ini_set('session.cookie_domain', '.vercel.app');
+    ini_set('session.cookie_path', '/');
     session_start();  // Sempre após configurar os cookies
 
 
