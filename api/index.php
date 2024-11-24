@@ -53,6 +53,7 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="/css/style.css">
+    <script src="/scripts/validators/dateValidator.js"></script>
     <script src="/scripts/datePicker.js"></script>
     <script src="/scripts/modal.js"></script>
 </head>
