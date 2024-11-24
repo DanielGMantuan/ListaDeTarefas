@@ -48,6 +48,10 @@ $(document).ready(function () {
     validateName();
   });
 
+  $("#modal form input[name=name]").on("blur", function () {
+    dateValidator($("#datepicker").val());
+  });
+
   $(".moveUp").click(function () {
     var row = $(this).closest("tr");
     var prevRow = row.prev();
@@ -144,21 +148,10 @@ function deleteTask(id) {
 }
 
 function formatCurrency(input) {
+  validateCost(input);
   if (input.val()) {
     let value = input.val().replace(/[^\d,]/g, "");
     value = value.replace(",", ".");
-
-    validateCost(input);
-
-    if (value.length >= 12) {
-      $("#modal form input[name=cost]")
-        .siblings(".error")
-        .css("display", "block");
-    } else {
-      $("#modal form input[name=cost]")
-        .siblings(".error")
-        .css("display", "none");
-    }
 
     let formattedValue = parseFloat(value).toLocaleString("pt-BR", {
       style: "currency",
