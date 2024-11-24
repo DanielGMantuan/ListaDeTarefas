@@ -4,6 +4,7 @@
         <div class="column-container">
             <label for="name">Name</label>
             <input type="text" name="name" class="form-input" placeholder="Task name">
+            <span class="error">Nome invalido</span>
         </div>
         <div class="column-container">
             <label for="cost">Cost</label>
@@ -13,7 +14,7 @@
         <div class="column-container">
             <label for="dateLimit" for="datepicker">Date Limit</label>
             <input type="text" name="dateLimit" id="datepicker" class="form-input" placeholder="Choose date limit">
-            <span class="error">O valor máximo permitido é 999.999.999,99</span>
+            <span class="error">Data invalida</span>
         </div>
         <div class="buttons">
             <input type="hidden" name="option" value="2">
