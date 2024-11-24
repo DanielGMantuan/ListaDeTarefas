@@ -1,4 +1,15 @@
+import { dateValidator } from "./datePicker";
+
 $(document).ready(function () {
+  $("#modal form").submit(function (event) {
+    event.preventDefault();
+    if (!validateForm()) {
+      alert("Formulario invalido");
+      return;
+    }
+    this.submit();
+  });
+
   function updateButtonVisibility() {
     $("table tbody tr").each(function (index) {
       var totalRows = $("table tbody tr").length;
@@ -67,6 +78,7 @@ $(document).ready(function () {
       data: { order: JSON.stringify(order) },
       success: function (response) {
         alert("Ordem salva com sucesso!");
+        $("#saveOrder").css("display", "none");
       },
       error: function () {
         alert("Ocorreu um erro ao salvar a ordem.");
@@ -96,6 +108,7 @@ function openModal(id) {
     $("#modal form > p").text("Add Task");
     $(".buttons > button[type=submit]").text("Submit");
     $(".buttons > input[name=option]").val("2");
+    $("#modal form input[name=name]").focus();
     return;
   }
 
@@ -103,6 +116,7 @@ function openModal(id) {
     .then((response) => response.json())
     .then((data) => {
       $("#modal form input[name=name]").val(data.name);
+      $("#modal form input[name=name]").focus();
       $("#modal form input[name=cost]").val(data.cost);
       $(".buttons > input[name=id]").val(data.id);
       $("#modal form input[name=dateLimit]").val(data.dateLimit);
@@ -132,6 +146,18 @@ function formatCurrency(input) {
     let value = input.val().replace(/[^\d,]/g, "");
     value = value.replace(",", ".");
 
+    validateCost(input);
+
+    if (value.length >= 12) {
+      $("#modal form input[name=cost]")
+        .siblings(".error")
+        .css("display", "block");
+    } else {
+      $("#modal form input[name=cost]")
+        .siblings(".error")
+        .css("display", "none");
+    }
+
     let formattedValue = parseFloat(value).toLocaleString("pt-BR", {
       style: "currency",
       currency: "BRL",
@@ -139,4 +165,45 @@ function formatCurrency(input) {
 
     input.val(formattedValue);
   }
+}
+
+function validateForm() {
+  validName = validateName();
+  validCost = validateCost();
+  validDate = dateValidator($("#modal form input[name=dateLimit]").val());
+
+  if (validName && validCost && validDate) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function validateName() {
+  if (
+    $("#modal form input[name=name]").val() == "" ||
+    $("#modal form input[name=name]").val() == null
+  ) {
+    $("#modal form input[name=name]")
+      .siblings(".error")
+      .css("display", "block");
+    return false;
+  }
+  $("#modal form input[name=name]").siblings(".error").css("display", "none");
+  return true;
+}
+
+function validateCost(input) {
+  if (input.val()) {
+    let value = input.val().replace(/[^\d,]/g, "");
+    value = value.replace(",", ".");
+    if (value.length <= 12) {
+      $("#modal form input[name=cost]")
+        .siblings(".error")
+        .css("display", "none");
+      return true;
+    }
+  }
+  $("#modal form input[name=cost]").siblings(".error").css("display", "block");
+  return false;
 }

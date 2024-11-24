@@ -8,10 +8,12 @@
         <div class="column-container">
             <label for="cost">Cost</label>
             <input type="text" name="cost" class="form-input" placeholder="Task cost">
+            <span class="error">O valor máximo permitido é 999.999.999,99</span>
         </div>
         <div class="column-container">
             <label for="dateLimit" for="datepicker">Date Limit</label>
             <input type="text" name="dateLimit" id="datepicker" class="form-input" placeholder="Choose date limit">
+            <span class="error">O valor máximo permitido é 999.999.999,99</span>
         </div>
         <div class="buttons">
             <input type="hidden" name="option" value="2">

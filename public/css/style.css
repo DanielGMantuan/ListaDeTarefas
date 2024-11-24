@@ -242,3 +242,9 @@ form .form-input {
 #saveOrder {
     display: none;
 }
+
+.error {
+    display: none;
+    color: rgb(177, 36, 36);
+    font-size: smaller;
+}
