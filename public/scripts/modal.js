@@ -167,7 +167,7 @@ function formatCurrency(input) {
 
 function validateForm() {
   validName = validateName();
-  validCost = validateCost();
+  validCost = validateCost($("#modal form input[name=cost]"));
   validDate = dateValidator($("#modal form input[name=dateLimit]").val());
 
   if (validName && validCost && validDate) {
