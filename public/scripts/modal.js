@@ -1,5 +1,3 @@
-import { dateValidator } from "./datePicker";
-
 $(document).ready(function () {
   $("#modal form").submit(function (event) {
     event.preventDefault();
