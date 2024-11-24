@@ -48,7 +48,7 @@ $(document).ready(function () {
     validateName();
   });
 
-  $("#modal form input[name=name]").on("blur", function () {
+  $("#datepicker").on("blur", function () {
     dateValidator($("#datepicker").val());
   });
 
