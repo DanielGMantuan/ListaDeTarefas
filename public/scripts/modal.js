@@ -44,6 +44,10 @@ $(document).ready(function () {
     formatCurrency($(this));
   });
 
+  $("#modal form input[name=name]").on("blur", function () {
+    validateName();
+  });
+
   $(".moveUp").click(function () {
     var row = $(this).closest("tr");
     var prevRow = row.prev();
